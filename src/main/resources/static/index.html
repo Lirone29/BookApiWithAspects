@@ -1,0 +1,63 @@
+<!doctype html>
+<html ng-app="myApp" ng-controller="booksCtrl">
+<head>
+<title>Books AngularJS</title>
+<link rel="stylesheet" href="w3.css">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+<div class="w3-container">
+
+<h3>Books  </h3>
+  {{booksList}}
+<table class="w3-table w3-bordered w3-striped">
+  <tr>
+    <th>Edit</th>
+    <th>Book Id</th>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Info</th>
+    <th>Year</th>
+  </tr>
+  <tr ng-repeat="book in books">
+    <td>
+      <button class="w3-btn w3-ripple" ng-click="editBook(books.indexOf(book))">&#9998; Edit</button>
+    </td>
+    <td>{{ book.id }}</td>
+    <td>{{ book.title  }}</td>
+    <td>{{ book.author  }}</td>
+    <td>{{ book.info  }}</td>
+    <td>{{ book.year  }}</td>
+
+  </tr>
+</table>
+<br>
+<button class="w3-btn w3-blue-gray w3-ripple" ng-click="editBook('new')">&#9998; Create New Book</button>
+
+<form ng-hide="hideform">
+  <h3 ng-show="edit">Create New Book - Book Info:</h3>
+  <h3 ng-hide="edit">Edit Book Info:</h3>
+
+    <label>Title:</label>
+    <input class="w3-input w3-border" type="text" ng-model="title" ng-disabled="!edit" placeholder="Title">
+  <br>
+    <label>Author:</label>
+    <input class="w3-input w3-border" type="text" ng-model="author" ng-disabled="!edit" placeholder="Author">
+  <br>
+    <label>Year:</label>
+    <input class="w3-input w3-border" type="text" ng-model="year" ng-disabled="!edit" placeholder="Year">
+  <br>
+    <label>Info:</label>
+    <input class="w3-input w3-border" type="text" ng-model="info" ng-disabled="!edit" placeholder="Info">
+<button class="w3-btn w3-green w3-ripple" ng-click="saveBook()" ng-disabled="error || incomplete">&#10004; Save</button>
+
+</form>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<script src="books.js"></script>
+
+</body>
+</html> 
